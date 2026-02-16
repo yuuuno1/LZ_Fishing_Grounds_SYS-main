@@ -1,0 +1,62 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}" />
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}" />
+        
+        <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}" />
+        <title>LZ Fishing Grounds</title>
+     
+        {% compress css %}
+        <link rel="stylesheet" href="{% static 'src/output.css' %}">
+        {% endcompress %}
+        <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+      />
+    
+
+      <style>
+        @media print {
+            button {
+                display: none;
+            }
+        }
+      </style>
+    </head>
+
+<body>
+    <div class="flex justify-between gap-8">
+        <button
+        class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-gray-900 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none m-5"
+        type="button" onclick="history.back()"
+        >
+        Back
+        </button>
+        <button
+        class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-600 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none m-5"
+        type="button" onclick="window.print()"
+        >
+        Print
+        </button>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto p-8 flex justify-center">
+        <img src="{% static 'img/logo.png' %}" alt="logo" class="h-20">
+    </div>
+    {% block content %}
+    {% endblock content %}
+
+    <script>
+        window.print()
+    </script>
+</body>
+</html>

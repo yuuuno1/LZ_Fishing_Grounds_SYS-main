@@ -1,0 +1,57 @@
+{% extends '_base_panel.html' %}
+
+{% load static %}
+
+{% block content %}
+    {% include "component/sidebar.html" %}
+
+    <div class="relative flex flex-col w-full h-auto p-8 text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+          <div class="flex items-center justify-between gap-8 mb-8">
+            <div>
+              <h5
+                class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                Product Management
+              </h5>
+              <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+                Add new product
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+              <a href="{% url 'product_management' %}"
+                class="select-none rounded-lg border border-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-gray-900 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button">
+                Go Back
+              </a>
+              
+            </div>
+          </div>
+
+         
+        </div>
+
+
+        
+        <div class="mx-auto p-0 bg-slate-100 sm:h-[500px] sm:text-sm w-[640px] overflow-auto rounded-md shadow">
+          <h3 class="p-4 text-base uppercase bg-slate-900 text-white">Register Product Form</h3>
+          <form method="post" class="w-100 h-100 px-16 py-5" enctype="multipart/form-data">
+            {% csrf_token %}
+              {% load tailwind_filters %}
+
+              {{ form|crispy }}
+  
+              <button class="align-middle w-full select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 bg-gradient-to-tr from-blue-700 to-blue-500 text-white shadow-md rounded-full shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+              type="submit" data-ripple-light="true">Register Product</button>
+  
+              <a class="mt-5 align-middle w-full select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 bg-slate-200 text-dark shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block rounded-full" href="{% url 'product_management' %}"
+              data-ripple-light="true" >Cancel</a>
+  
+          </form>
+       
+      </div>
+    </div>
+
+    
+  </div>
+{% endblock content %}
+    

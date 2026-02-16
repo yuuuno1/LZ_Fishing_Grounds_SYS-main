@@ -1,0 +1,103 @@
+<section class="py-10 px-8 mb-10" id="products">
+    <div class="mx-auto text-center mb-16">
+      <h1
+      class="block antialiased tracking-normal font-sans text-5xl font-semibold leading-tight text-inherit my-4 md:text-4xl"
+    >
+      Explore all of our products
+    </h1>
+
+    </div>
+
+    <div class="max-w-screen-xl mx-auto grid grid-cols-2 gap-5 my-8">
+
+      <form class="grid grid-cols-3 gap-3">
+
+        <button class="border bg-light-blue-800 text-white rounded-md drop-shadow-md transition-all hover:opacity-75">Filter</button>
+
+        <div class="relative h-10 w-72 min-w-[200px] col-span-2">
+          <select name="filter"
+            class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 empty:!bg-gray-900 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
+
+            {% for category in categories %}
+              <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+
+          </select>
+          <label
+            class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+            Filter by Category
+          </label>
+        </div>
+
+        
+      </form>
+
+      <form class="grid grid-cols-3 gap-2">
+        <button class="border bg-light-blue-800 text-white rounded-md drop-shadow-md transition-all hover:opacity-75">Search</button>
+
+        <div class="w-72">
+          <div class="relative w-full min-w-[200px] h-10 col-span-2">
+            <input name="search"
+              class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+              placeholder=" " /><label
+              class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">Search
+            </label>
+          </div>
+        </div>  
+      </form>
+
+    </div>
+
+    <div class="mx-auto px-10 py-5 max-w-screen-2xl min-h-screen rounded-lg">
+      <div
+        class="grid grid-cols-1 gap-8 lg:grid-cols-4 md:grid-cols-2"
+      >
+
+      {% for item in products  %}
+      {% if item.is_available %}
+        <div
+          class="relative flex flex-col bg-clip-border rounded-xl transition-all text-gray-700 border border-gray-300 bg-white hover:opacity-75"
+        >
+          <div class="p-6 cursor-pointer ">
+            <div class="h-[200px] overflow-hidden">
+                <img
+                src="{{ item.product_img.url }}"
+                alt="{{ item.product_img.url }}"
+                class="mx-auto rounded-md h-full"
+              />
+            </div>
+            <div class="flex flex-col justify-center items-center p-8">
+              <div>
+                <h5
+                  class="block antialiased tracking-normal font-sans text-sm font-base leading-snug text-blue-gray-900 mb-4"
+                >
+                  {{ item.name }}
+                </h5>
+
+              </div>
+              <h5
+                class="block antialiased tracking-normal font-sans text-base font-semibold leading-snug text-inherit text-gray-600"
+              >
+              &#8369; {{ item.formatted_price }}
+              </h5>
+            </div>
+
+            <div>
+                <a  href="{% url 'view_item' item.id %}"
+                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-600 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full box-border border-2 border-transparent hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600"
+                    >
+                    View Details
+                </a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+
+
+
+
+  </section>

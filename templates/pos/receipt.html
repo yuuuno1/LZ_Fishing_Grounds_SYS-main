@@ -1,0 +1,73 @@
+{% extends '_base_panel.html' %}
+
+{% load static %}
+
+{% block content %}
+   
+
+    <div class="relative flex flex-col max-w-screen-2xl w-full mx-auto overflow-y-auto p-8 text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+          <div class="flex items-center justify-between gap-8 mb-8">
+            <div>
+              <h5
+                class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                Order information for Transaction ID : <span class="text-blue-600">{{ tnum }}</span>
+              </h5>
+              <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+                See information about this transaction
+                
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+              
+              <button onclick="window.close();"
+                class="flex select-none items-center gap-3 border-2 rounded-lg bg-blue-600 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none hover:border-blue-600 hover:border-2 hover:bg-white hover:text-blue-600"
+                type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-4 text-white">
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                Close
+              </button>
+
+              {% comment %} <span>&#8369 {{ subtotal }}</span> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="bg-blue-gray-50 rounded-md max-h-[500px] overflow-y-auto shadow-md">
+            <table class="w-full max-h-[80%] text-left table-auto min-w-max border-collapse">
+                <thead class="bg-gradient-to-r from-blue-500 to-teal-500 text-white sticky top-0">
+                  <tr class="uppercase text-sm">
+                    <th class="py-3 px-5">Product</th>
+                    <th class="py-3 px-5">Quantity</th>
+                    <th class="py-3 px-5">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in items %}
+                  <tr class="text-sm">
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">{{ item.product_id }}</td>
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">x{{ item.quantity }}</td>
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">&#8369; {{ item.subtotal }}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                  <tr class="sticky bottom-0 bg-white">
+                    <td colspan="2" class="border text-sm  border-gray-300 py-3 px-5 font-bold uppercase text-end">Grand Total</td>
+                    <td class="py-3 px-5 border-teal-500 bg-light-green-50 text-green-800" data-subtotal="{{ subtotal_raw }}" id="grand_total">&#8369; {{ subtotal }}</td>
+                  </tr>
+                  <tr class="sticky bottom-0 bg-white">
+                    <td colspan="2" class="border text-sm  border-gray-300 py-3 px-5 font-bold uppercase text-end">Payment</td>
+                    <td class="py-3 px-5 border-blue-500 bg-light-blue-50 text-blue-800" data-subtotal="{{ subtotal_raw }}" id="grand_total">&#8369; {{ order.formatted_payment }}</td>
+                  </tr>
+                  <tr class="sticky bottom-0 bg-white">
+                    <td colspan="2" class="border text-sm  border-gray-300 py-3 px-5 font-bold uppercase text-end">Change</td>
+                    <td class="py-3 px-5 border-gray-500 bg-blue-gray-50 text-gray-800" data-subtotal="{{ subtotal_raw }}" id="grand_total">&#8369; {{ order.formatted_change }}</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+          
+        </div>
+     
+      </div>
+{% endblock content %}
+    

@@ -1,0 +1,48 @@
+{% extends '_base_panel.html' %}
+
+{% load static %}
+
+{% block content %}
+   
+
+    <div class="relative flex flex-col max-w-screen-2xl w-full mx-auto overflow-y-auto p-8 text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+          <div class="flex items-center justify-between gap-8 mb-8">
+            <div>
+              <h5
+                class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                Cancellation Confirmation for Transaction ID : <span class="text-red-600">{{ tnum }}</span>
+              </h5>
+
+            </div>
+            <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+              
+              <button onclick="window.close();"
+                class="flex select-none items-center gap-3 border-2 rounded-lg bg-blue-600 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none hover:border-blue-600 hover:border-2 hover:bg-white hover:text-blue-600"
+                type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-4 text-white">
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                Close
+              </button>
+
+              {% comment %} <span>&#8369 {{ subtotal }}</span> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="bg-blue-gray-50 rounded-md max-h-[500px] overflow-y-auto shadow-md">
+              <p class="text-center p-6">Do you really want to cancel this transaction?</p>
+              <div class="flex w-1/2 mx-auto p-6 justify-evenly">
+                <a onclick="window.close();" class="select-none rounded-lg mx-3 bg-gradient-to-r from-gray-600 to-blue-gray-800 py-2 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" >
+                  Cancel
+                </a>
+                <a href="?confirm=yes" class="select-none rounded-lg mx-3 bg-gradient-to-r from-red-500 to-pink-500 py-2 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" >
+                  Confirm
+                </a>
+                
+              </div>
+          </div>        
+        </div>
+
+      </div>
+{% endblock content %}
+    

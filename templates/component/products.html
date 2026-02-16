@@ -1,0 +1,73 @@
+<section class="py-10 px-8 mb-10 animate-fadeRight1" id="products">
+    <div class="mx-auto text-center mb-16">
+      <p
+        class="block antialiased font-sans leading-relaxed text-inherit font-medium text-lg"
+      >
+        Checkout our all products
+      </p>
+
+      <h1
+      class="block antialiased tracking-normal font-sans text-5xl font-semibold leading-tight text-inherit my-4 md:text-4xl"
+    >
+      Explore our products
+    </h1>
+
+
+    </div>
+    <div class="mx-auto px-10 py-5 max-w-screen-2xl rounded-lg">
+      <div
+        class="grid grid-cols-1 gap-8 lg:grid-cols-4 md:grid-cols-2"
+      >
+
+      {% for item in products  %}
+      {% if item.is_available %}
+        <div
+          class="relative flex flex-col bg-clip-border rounded-xl transition-all text-gray-700 border border-gray-300 bg-white hover:opacity-75"
+        >
+          <div class="p-6 cursor-pointer">
+            <div class="h-[200px] overflow-hidden">
+                <img
+                src="{{ item.product_img.url }}"
+                alt="{{ item.product_img.url }}"
+                class="mx-auto rounded-md h-full"
+              />
+            </div>
+
+            <div class="flex flex-col justify-center items-center p-8">
+              <div>
+                <h5
+                  class="block antialiased tracking-normal font-sans text-sm font-base leading-snug text-blue-gray-900 mb-4"
+                >
+                  {{ item.name }}
+                </h5>
+
+              </div>
+              <h5
+                class="block antialiased tracking-normal font-sans text-base font-semibold leading-snug text-inherit text-gray-600"
+              >
+              &#8369; {{ item.formatted_price }}
+              </h5>
+            </div>
+
+            <div>
+                <a
+                    href="{% url 'view_item' item.id %}"
+                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-600 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full box-border border-2 border-transparent hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600"
+                    >
+                    View Details
+                </a>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto flex justify-end">
+        <a href="{% url 'all_product' %}" class="uppercase font-semibold border-b-2 border-gray-900 px-5 hover:text-blue-500 hover:border-blue-600 transition-all">View All</a>
+    </div>
+
+
+  </section>

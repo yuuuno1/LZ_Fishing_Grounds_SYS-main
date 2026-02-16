@@ -1,0 +1,72 @@
+<section class="py-10 px-8 animate-fadeRight" id="featured">
+    <div class="mx-auto text-center mb-16">
+      <p
+        class="block antialiased font-sans leading-relaxed text-inherit font-medium text-lg"
+      >
+        Featuring Trendy Products
+      </p>
+      <h1
+        class="block antialiased tracking-normal font-sans text-5xl font-semibold leading-tight text-inherit my-4 md:text-4xl"
+      >
+        Go with the Trend
+      </h1>
+
+    </div>
+    <div class="mx-auto px-10 py-5 max-w-screen-2xl rounded-lg">
+      <div
+        class="grid grid-cols-1 gap-8 lg:grid-cols-3 md:grid-cols-2"
+      >
+
+      {% for product in featured  %}
+
+      {% if product.product.is_available %}
+        <div
+          class="relative flex flex-col bg-clip-border rounded-xl transition-all bg-white hover:opacity-75 text-gray-700 border border-gray-300"
+        >
+          <div class="p-6 cursor-pointer">
+            <div class="h-[200px] overflow-hidden">
+                <img
+                src="{{ product.product.product_img.url }}"
+                alt="{{ product.product.product_img.url }}"
+                class="mx-auto rounded-md h-full"
+              />
+            </div>
+
+            <div class="flex justify-between p-8">
+              <div>
+                <h5
+                  class="block antialiased tracking-normal font-sans text-sm font-semibold leading-snug text-blue-gray-900 mb-4"
+                >
+                  {{ product.product.name }}
+                </h5>
+
+              </div>
+              
+              <h5
+                class="block antialiased tracking-normal font-sans text-base font-semibold leading-snug text-inherit text-gray-600"
+              >
+              &#8369; {{ product.product.formatted_price }}
+              </h5>
+            </div>
+
+
+            <div>
+                <a
+                    href="{% url 'view_item' product.product.id %}"
+                    class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg bg-blue-600 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none block w-full 
+                    
+                    box-border border-2 border-transparent hover:bg-transparent hover:border-2 hover:border-blue-600 hover:text-blue-600
+                    "
+                    >
+                    View Details
+                </a>
+            </div>
+
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,23 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+<div class="relative flex flex-col mt-6 text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96 mx-auto">
+  <div class="p-7">
+    <h5 class="block mb-2 font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-indigo-600">
+      Registration is Success
+    </h5>
+    <p class="block font-sans text-base antialiased font-light leading-relaxed text-inherit">
+      We have sent a confirmation email to verify your account. The purpose of this verification is solely for securing your account.
+    </p>
+  </div>
+  <div class="p-6 pt-0 mb-3">
+    <a
+      class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm py-3 px-6 rounded-lg bg-indigo-600 text-white shadow-md shadow-gray-900/10 hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none"
+      href="{% url 'index' %}">
+      Go to home page
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

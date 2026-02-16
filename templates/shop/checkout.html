@@ -1,0 +1,70 @@
+{% extends "shop/base_cart.html" %}
+{% load static %}
+
+{% block content %}
+
+<h3 class="max-w-screen-xl mx-auto mt-10 flex items-center justify-between">
+    <div class="uppercase text-blue-gray-800 font-bold text-2xl">Checkout Items</div>
+    <a class="px-4 py-2 bg-gray-900 text-white rounded-md drop-shadow-md hover:opacity-75 transition-all" href="{% url 'cart_view' %}">Go Back</a>
+</h3>
+<div class="bg-blue-gray-50 rounded-md max-w-screen-xl mx-auto max-h-[500px] overflow-y-auto shadow-md my-10">
+    <table class="w-full max-h-[80%] text-left table-auto min-w-max border-collapse">
+        <thead class="bg-gradient-to-r from-blue-500 to-teal-500 text-white sticky top-0">
+          <tr class="uppercase text-sm">
+            <th class="py-3 px-5">Product</th>
+            <th class="py-3 px-5">Quantity</th>
+            <th class="py-3 px-5">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr class="text-sm">
+            <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">{{ item.product.name }}</td>
+            <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">x {{ item.quantity }}</td>
+            <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">&#8369; {{ item.formatted_price }}</td>
+          </tr>
+          {% endfor %}
+          
+          <tr class="sticky bottom-0 bg-white">
+            <td colspan="2" class="border text-sm  border-gray-300 py-3 px-5 font-bold uppercase text-end">Grand Total</td>
+            <td class="py-3 px-5 border-teal-500 bg-light-green-50 text-green-800" data-subtotal="{{ subtotal }}" id="grand_total">&#8369; {{ subtotal }}</td>
+          </tr>
+
+        </tbody>
+    </table>
+  </div>
+
+
+  <div class="my-10 max-w-screen-xl mx-auto grid grid-rows-2 lg:grid-cols-2 lg:grid-rows-1">
+
+    <div class="p-8">
+        <div>
+            <div class="p-5 text-center bg-gray-50 rounded drop-shadow font-bold tracking-wider">GCASH #: <span class="text-blue-700">{{ shop_details.gcash }}</span></div>
+            <img class="rounded-lg h-42" src="{{ shop_details.gcash_insta_pay.url }}" alt="gcash">
+            <div class="my-5">
+                <a href="{{ shop_details.gcash_insta_pay.url }}" target="_blank" class="mx-auto px-4 py-2 bg-blue-600 text-white rounded-md drop-shadow-md block w-1/2 text-center hover:opacity-75 transition-all" href="{% url 'cart_view' %}">Download QR</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-8">
+        
+        <div class="bg-white rounded-md drop-shadow-md overflow-hidden">
+            <h3 class="bg-gradient-to-r from-blue-500 p-6 to-teal-500 text-white uppercase font-bold">Payment Form</h3>
+            <form method="post" enctype="multipart/form-data" class="p-5">
+                {% csrf_token %}
+
+                {% load tailwind_filters %}
+
+                {{ form|crispy }}
+
+
+                <button class="mx-auto px-4 py-2 bg-gradient-to-r from-blue-500 p-6 to-teal-500 font-semibold text-sm text-white rounded-md drop-shadow-md block w-full uppercase mt-8 hover:opacity-75 transition-all">Confirm Payment</button>
+
+            </form>
+        </div>
+    </div>
+
+  </div>
+
+{% endblock content %}

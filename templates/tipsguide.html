@@ -1,0 +1,54 @@
+{% extends 'tips_base.html' %} 
+{% load static %}
+
+
+{% block content %}
+    <div class="max-w-screen-xl min-h-screen mx-auto bg-blue-gray-50 p-5 animate-fadeTop">
+        <h1 class="font-bold text-4xl text-center text-blue-gray-800 antialiased tracking-wide my-8">Tips and Guides</h1>
+        <h3 class="text-center text-xl font-medium tracking-wide">In this page we will be giving some tips and guide on how to do some basic chores for your pet setup.</h3>
+
+
+        {% for tip in tips_guides %}
+            {% if tip.label == "tips" %}
+            <div class="my-12 flex flex-col gap-6 bg-white py-8 rounded-md drop-shadow-md">
+                <h1 class="font-bold text-2xl text-center text-blue-gray-800 antialiased tracking-wide my-2">Tips: <span class="text-blue-600">{{ tip.title }}</span></h1>
+
+                <p class="mx-auto w-2/3 text-large tracking-wide leading-relaxed indent-12">{{ tip.body }} {{ tip.body }}</p>
+
+                <div class="bg-blue-gray-50 w-[90%] mx-auto p-8 rounded-lg shadow-inner grid grid-cols-2 gap-5">
+                    {% for img in images %}
+                        {% if img.tid.id == tip.id %}
+                            <img src="{{ img.img.url }}" alt="asdasdas" class="rounded-lg shadow-md h-[260px]">
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+
+        {% for tip in tips_guides %}
+            {% if tip.label == "guides" %}
+            <div class="my-12 flex flex-col gap-6 bg-white py-8 rounded-md drop-shadow-md">
+                <h1 class="font-bold text-2xl text-center text-blue-gray-800 antialiased tracking-wide my-2">Guide: <span class="text-blue-600">{{ tip.title }}</span></h1>
+
+                <p class="mx-auto w-2/3 text-large tracking-wide leading-relaxed indent-12">{{ tip.body }} {{ tip.body }}</p>
+
+                <div class="bg-blue-gray-50 w-[90%] mx-auto p-8 rounded-lg shadow-inner grid grid-cols-2 gap-5">
+                    {% for img in images %}
+                        {% if img.tid.id == tip.id %}
+                            <img src="{{ img.img.url }}" alt="{{ img.img }}" class="rounded-lg shadow-md h-[260px]">
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+
+
+    </div>
+    
+
+{% endblock %}

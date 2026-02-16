@@ -1,0 +1,221 @@
+{% load compress %}
+{% load static %}
+ 
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon_io/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon_io/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon_io/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'favicon_io/site.webmanifest' %}" />
+
+    <title>LZ Fishing Grounds</title>
+ 
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">    
+    <link rel="stylesheet" href="{% static 'src/aos.css' %}">    
+    {% endcompress %}
+
+    <link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"/>
+
+    
+</head>
+ 
+  <body class="bg-slate-100">
+    
+    <div class="bg-blue-gray-50 p-0 pt-[8%]" id="main-wrapper">
+
+      {% comment %} Header {% endcomment %}
+      <header class="bg-white fixed top-0 left-0 drop-shadow-md w-full z-50 border-b-2 border-b-gray-100" data-aos="fade-down" id="header">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div class="flex lg:flex-1">
+            <a href="{% url 'index' %}" class="-m-1.5 p-1.5">
+              <span class="sr-only">LZ Fishing Grounds</span>
+              <img class="h-[50px] w-auto" src="{% static 'img/logo.png' %}" alt="logo">
+            </a>
+          </div>
+
+          <div class="hidden lg:flex lg:gap-x-12">
+            <a href="{% url 'index' %}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
+          </div>
+          
+        </nav>
+        <!-- Mobile menu, show/hide based on menu open state. -->
+        <div class="hidden" role="dialog" aria-modal="true">
+          <!-- Background backdrop, show/hide based on slide-over state. -->
+          <div class="fixed inset-0 z-10"></div>
+          <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div class="flex items-center justify-between">
+              <a href="#" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+              </a>
+              <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+                <span class="sr-only">Close menu</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="mt-6 flow-root">
+              <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="space-y-2 py-6">
+                  <div class="-mx-3">
+                    <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" aria-controls="disclosure-1" aria-expanded="false">
+                      Product
+
+                      <svg class="h-5 w-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                      </svg>
+                    </button>
+                    <!-- 'Product' sub-menu, show/hide based on menu state. -->
+                    <div class="mt-2 space-y-2" id="disclosure-1">
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Analytics</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Engagement</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Security</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Integrations</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Automations</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Watch demo</a>
+                      <a href="#" class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">Contact sales</a>
+                    </div>
+                  </div>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+                </div>
+                <div class="py-6">
+                  <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      {% comment %} Main content where the index will be extended to {% endcomment %}
+      <main class="min-h-screen">
+        {% block content %}{% endblock content %}
+        {% if messages %}
+    {% for message in messages %}
+    
+    <div class="fixed bottom-11 right-5">
+      <div
+      role="alert"
+      class="relative flex w-full px-4 py-4 text-base text-white {% if message.tags == "success" %}bg-teal-600{% else %} bg-red-600{% endif %} rounded-lg font-regular animate-fadeRight"
+      data-dismissible="alert"
+    >
+      <div class="mr-12 ">{{ message }}</div>
+      <button
+        data-dismissible-target="alert"
+        class="!absolute  top-3 right-3 h-8 max-h-[32px] w-8 max-w-[32px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-white transition-all hover:bg-white/10 active:bg-white/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button"
+      >
+        <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="w-6 h-6"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </span>
+      </button>
+    </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+      </main>
+
+      {% comment %} Footer of the page {% endcomment %}
+      <footer class="px-16" data-aos="fade-up">
+        <div
+          class="flex flex-row pt-5 items-center justify-center text-center">
+          <ul class="flex flex-wrap items-center gap-y-2 gap-x-8">
+            <li>
+              <a href="{% url 'index' %}"
+                class="block font-sans text-base antialiased font-normal leading-relaxed transition-colors text-blue-gray-900 hover:text-blue-500 focus:text-blue-500">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="block font-sans text-base antialiased font-normal leading-relaxed transition-colors text-blue-gray-900 hover:text-blue-500 focus:text-blue-500">
+
+              </a>
+            </li>
+           
+            <li>
+              <a href="#"
+                class="block font-sans text-base antialiased font-normal leading-relaxed transition-colors text-blue-gray-900 hover:text-blue-500 focus:text-blue-500">
+    
+              </a>
+            </li>
+          </ul>
+        </div>
+        <span class="block py-3 border-t border-blue-gray-100 my-2" />
+        <p class="block font-sans text-base antialiased font-normal leading-relaxed text-center text-blue-gray-900 pb-5">
+          © 2024 LZ Fishing Grounds
+        </p>
+      </footer>
+
+    </div>
+
+    {% comment %} logout confirmation {% endcomment %}
+
+    <div data-dialog-backdrop="dialog-sm" data-dialog-backdrop-close="true"
+      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+      <div data-dialog="dialog-sm" class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg -translate-y-10">
+        <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+              <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Sign out account</h3>
+              <div class="mt-2">
+                <p class="text-base text-gray-500">Are you sure you want to sign out your account?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+          <a href="{% url 'logout' %}" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Sign out</a>
+          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-base font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" data-dialog-close="true">Cancel</button>
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+    <!-- script -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{% static 'src/js/aos.js' %}"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script type="module" src="{% static 'src/js/popover.js' %}"></script>
+    <script src="{% static 'src/js/ripple.js' %}"></script>
+    <script src="{% static 'src/js/dialog.js' %}"></script>
+    <script src="{% static 'src/js/collapse.js' %}"></script>
+    <script src="{% static 'src/js/dismissible.js' %}"></script>
+    <script type="module" src="{% static 'src/js/tooltip.js' %}"></script>
+
+    
+  </body>
+
+</html>

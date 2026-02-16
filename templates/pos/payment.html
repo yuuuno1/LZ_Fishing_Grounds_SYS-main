@@ -1,0 +1,221 @@
+{% extends '_base_panel.html' %}
+
+{% load static %}
+
+{% block content %}
+   
+
+    <div class="relative flex flex-col max-w-screen-2xl w-full mx-auto overflow-y-auto p-8 text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+        <div class="relative mx-4 mt-4 text-gray-700 bg-white rounded-none bg-clip-border">
+          <div class="flex items-center justify-between gap-8 mb-8">
+            <div>
+              <h5
+                class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+                Payment Confirmation for Transaction ID : <span class="text-blue-600">{{ tnum }}</span>
+              </h5>
+              <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+                See information about this transaction
+                
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+              
+              <button onclick="window.close();"
+                class="flex select-none items-center gap-3 border-2 rounded-lg bg-blue-600 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none hover:border-blue-600 hover:border-2 hover:bg-white hover:text-blue-600"
+                type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="size-4 text-white">
+                  <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                Close
+              </button>
+
+              {% comment %} <span>&#8369 {{ subtotal }}</span> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="bg-blue-gray-50 rounded-md max-h-[500px] overflow-y-auto shadow-md">
+            <table class="w-full max-h-[80%] text-left table-auto min-w-max border-collapse">
+                <thead class="bg-gradient-to-r from-blue-500 to-teal-500 text-white sticky top-0">
+                  <tr class="uppercase text-sm">
+                    <th class="py-3 px-5">Product</th>
+                    <th class="py-3 px-5">Quantity</th>
+                    <th class="py-3 px-5">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in items %}
+                  <tr class="text-sm">
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">{{ item.product_id }}</td>
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">x{{ item.quantity }}</td>
+                    <td class="py-3 px-5 border-e border-e-gray-300 font-semibold">&#8369; {{ item.subtotal }}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                  <tr class="sticky bottom-0 bg-white">
+                    <td colspan="2" class="border text-sm  border-gray-300 py-3 px-5 font-bold uppercase text-end">Grand Total</td>
+                    <td class="py-3 px-5 border-teal-500 bg-light-green-50 text-green-800" data-subtotal="{{ subtotal_raw }}" id="grand_total">&#8369; {{ subtotal }}</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+
+          <div class="p-5 md:w-2/3 mx-auto flex items-center gap-5 justify-center">
+            <p>Select Payment Method: </p>
+            <div class="relative flex w-full max-w-[24rem] flex-col rounded-xl bg-gray-50 bg-clip-border text-gray-700 shadow-md">
+              <nav class="flex min-w-[240px] flex-row gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
+                <div role="button"
+                  class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                  <label htmlFor="horizontal-list-react" class="flex items-center w-full px-3 py-2 cursor-pointer">
+                    <div class="grid mr-3 place-items-center">
+                      <div class="inline-flex items-center">
+                        <label class="relative flex items-center p-0 rounded-full cursor-pointer"
+                          htmlFor="horizontal-list-react">
+                          <input name="payment_method" id="horizontal-list-react" type="radio" value="cash"
+                            class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-teal-600 checked:before:bg-gray-900 hover:before:opacity-0" />
+                          <span
+                            class="absolute text-teal-600 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
+                              <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                            </svg>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-700">
+                      Cash
+                    </p>
+                  </label>
+                </div>
+                
+                <div role="button"
+                  class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900">
+                  <label htmlFor="horizontal-list-svelte" class="flex items-center w-full px-3 py-2 cursor-pointer">
+                    <div class="grid mr-3 place-items-center">
+                      <div class="inline-flex items-center">
+                        <label class="relative flex items-center p-0 rounded-full cursor-pointer"
+                          htmlFor="horizontal-list-svelte">
+                          <input name="payment_method" id="horizontal-list-svelte" type="radio" value="gcash"
+                            class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-blue-gray-200 text-gray-900 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-gray-900 checked:before:bg-gray-900 hover:before:opacity-0" />
+                          <span
+                            class="absolute text-blue-600 transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="currentColor">
+                              <circle data-name="ellipse" cx="8" cy="8" r="8"></circle>
+                            </svg>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <p class="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-700">
+                      Gcash
+                    </p>
+                  </label>
+                </div>
+              </nav>
+            </div>
+          </div>
+          {% comment %} Payment Cash form {% endcomment %}
+          <div class="rounded-lg shadow-lg bg-white my-5 overflow-hidden md:w-2/5 mx-auto animate-fadeRight hidden" id="cash_form">
+            
+            <form method="post">
+              {% csrf_token %}
+              <p class="p-4 bg-gradient-to-tr from-teal-600 to-teal-500 text-sm uppercase text-white">Cash Payment</p>
+
+              <div class="p-6">
+                <div class="w-full">
+
+                  <div class="w-full mb-5">
+                    <div class="relative w-full min-w-[200px] h-10">
+                      <input
+                        type="number" step="0" min="0" autocomplete="off" name="payment" id="payment" required
+                        class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                        placeholder=" " /><label
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">Payment
+                      </label>
+                    </div>
+                  </div> 
+
+                  <div class="w-full">
+                    <div class="relative w-full min-w-[200px] h-10">
+                      <input
+                        type="text" id="payment_change" value="₱ 0.00" readonly
+                        class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                        placeholder=" " /><label
+                        class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">Change
+                      </label>
+                    </div>
+                  </div> 
+                  
+                  <input type="hidden" name="payment_method" value="cash">
+                  <input type="hidden" name="tnum" value="{{ tnum }}">
+                </div> 
+
+              </div>
+
+              <div class="flex justify-end px-4">
+                <button type="submit" class="rounded bg-teal-600 px-5 py-2 text-sm text-white shadow-md my-5 disabled:bg-gray-700" id="cash_btn" disabled>Confirm Payment</button>
+              </div>
+
+            </form>
+
+          </div>
+
+          {% comment %} Payment Gcash form {% endcomment %}
+          <div class="rounded-lg shadow-lg bg-white my-5 overflow-hidden md:w-2/5 mx-auto animate-fadeRight hidden" id="gcash_form">
+            
+            <form method="post">
+              <p class="p-4 bg-gradient-to-tr from-blue-700 to-light-blue-700 text-sm uppercase text-white">Gcash Payment</p>
+              {% csrf_token %}
+              <div class="p-6">
+                <div class="w-full">
+
+                  <div class="relative w-full min-w-[200px] h-10 mb-6">
+                    <input
+                      type="tel" minlength="11" maxlength="11" name="num" required
+                      class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                      placeholder=" " /><label
+                      class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">Gcash Number
+                    </label>
+                  </div>
+                  
+                  
+                  <input type="hidden" name="payment_method" value="gcash">
+                </div> 
+                <div class="w-full">
+
+                  <div class="relative w-full min-w-[200px] h-10">
+                    <input
+                      type="text" minlength="13" maxlength="13" name="ref" required
+                      class="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                      placeholder=" " /><label
+                      class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">Reference Number
+                    </label>
+                  </div>
+                  
+                  
+                  <input type="hidden" name="payment_method" value="gcash">
+                  <input type="hidden" name="tnum" value="{{ tnum }}">
+                </div> 
+
+              </div>
+
+              <div class="flex justify-end px-4">
+                <button type="submit" class="rounded bg-blue-600 px-5 py-2 text-sm text-white shadow-md my-5">Confirm Payment</button>
+              </div>
+
+            </form>
+
+          </div>
+
+          
+          
+        </div>
+
+
+        
+   
+
+        
+
+        
+      </div>
+{% endblock content %}
+    
